@@ -27,11 +27,16 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("A user connected");
 
+  socket.on('create-something', (value) => {
+    console.log('create event')
+    io.emit('foo', value)
+  })
+
   socket.on("disconnect", () => {
     console.log("User disconnected");
   });
 
-  // Add your Socket.io event handlers here
+
 });
 
 // Start the server
